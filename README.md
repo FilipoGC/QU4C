@@ -8,14 +8,15 @@ In this work, we extend the original implementation to parse and process emulate
 ⚠️ This project is still under development and currently contains preliminary results and ongoing implementation efforts.
 
 # Usage
-> We tested this project with Intel BF-SDE versions 9.12 and 9.13.2.
+> We tested this project with Intel BF-SDE versions 9.12.0 and 9.13.2.
 
-1. Update `configPorts.txt` with:
-   - the output port,
+1. Update `configPorts.txt` and `auxTables.py` with:
+   - the output(server) port,
+   - client port,
    - the recirculation port for `PktGen`, and
    - the recirculation ports used by the cipher.
 
-2. Update `control.py` accordingly, making sure the same recirculation ports are configured there as well.
+2. Update `control.py` accordingly with recirculation ports of cipher.
 
 3. Set the required environment variables.
 
