@@ -11,7 +11,7 @@ In this work, we extend the original implementation to parse and process emulate
 > We tested this project with Intel BF-SDE versions 9.12.0 and 9.13.2.
 
 1. Update `configPorts.txt` and `auxTables.py` with:
-   - the output(server) port,
+   - the output (server) port,
    - client port,
    - the recirculation port for `PktGen`, and
    - the recirculation ports used by the cipher.
