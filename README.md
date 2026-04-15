@@ -18,9 +18,15 @@ In this work, we extend the original implementation to parse and process emulate
 
 2. Update `control.py` accordingly with recirculation ports of cipher.
 
-3. Set the required environment variables.
+3. Set the environment variables.
 
 4. Run:
 
+The `exec.sh` script simplifies the execution workflow by automating:
+- P4 compilation,
+- table entries configuration,
+- port configuration,
+- `PktGen` application setup, and
+- some commands in the Tofino port manager.
 ```bash
 ./exec.sh
