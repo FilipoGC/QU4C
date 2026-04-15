@@ -30,3 +30,14 @@ The `exec.sh` script simplifies the execution workflow by automating:
 - some commands in the Tofino port manager.
 ```bash
 ./exec.sh
+```
+# License
+This program is released under the [GNU Affero General Public License v3](https://www.gnu.org/licenses/agpl-3.0.html).
+
+# Contribuitors
+
+- Filipo G. Costa, Federal University of Pampa (UNICAMP), Brazil
+- Francisco G. Vogt, University of Campinas (UNICAMP), Brazil
+- Fabricio Rodrıguez Cesen, University of Campinas (UNICAMP), Brazil
+- Marcelo Caggiani Luizelli, Federal University of Pampa (UNIPAMPA), Brazil
+- Christian Esteve Rothenberg, University of Campinas (UNICAMP), Brazil
