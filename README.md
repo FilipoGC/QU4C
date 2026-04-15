@@ -36,8 +36,8 @@ This program is released under the [GNU Affero General Public License v3](https:
 
 # Contribuitors
 
-- Filipo G. Costa, Federal University of Pampa (UNICAMP), Brazil
-- Francisco G. Vogt, University of Campinas (UNICAMP), Brazil
-- Fabricio Rodrıguez Cesen, University of Campinas (UNICAMP), Brazil
+- Filipo G. Costa, Federal University Estadual de Campinas (UNICAMP), Brazil
+- Francisco G. Vogt, University Estadual de Campinas (UNICAMP), Brazil
+- Fabricio Rodrıguez Cesen, Telefonica Research, Spain
 - Marcelo Caggiani Luizelli, Federal University of Pampa (UNIPAMPA), Brazil
-- Christian Esteve Rothenberg, University of Campinas (UNICAMP), Brazil
+- Christian Esteve Rothenberg, University Estadual de Campinas (UNICAMP), Brazil
