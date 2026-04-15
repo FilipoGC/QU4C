@@ -1,0 +1,156 @@
+ucli
+pm
+port-add 10/- 100G NONE
+port-enb 10/-
+an-set 10/- 2
+port-dis 10/-
+port-enb 10/-
+
+
+port-add 1/2 10G NONE
+port-enb 1/2
+an-set 1/2 2
+port-dis 1/2
+port-enb 1/2
+
+port-add 28/- 100G NONE
+port-enb 28/-
+an-set 28/- 2
+port-dis 28/-
+port-enb 28/-
+port-loopback 28/- mac-near
+
+
+
+
+
+port-add 17/- 100G NONE
+port-enb 17/-
+an-set 17/- 2
+port-dis 17/-
+port-enb 17/-
+port-loopback 17/- mac-near
+
+port-add 16/- 100G NONE
+port-enb 16/-
+an-set 16/- 2
+port-dis 16/-
+port-enb 16/-
+port-loopback 16/- mac-near
+
+port-add 18/- 100G NONE
+port-enb 18/-
+an-set 18/- 2
+port-dis 18/-
+port-enb 18/-
+port-loopback 18/- mac-near
+
+port-add 19/- 100G NONE
+port-enb 19/-
+an-set 19/- 2
+port-dis 19/-
+port-enb 19/-
+port-loopback 19/- mac-near
+
+port-add 20/- 100G NONE
+port-enb 20/-
+an-set 20/- 2
+port-dis 20/-
+port-enb 20/-
+port-loopback 20/- mac-near
+
+port-add 21/- 100G NONE
+port-enb 21/-
+an-set 21/- 2
+port-dis 21/-
+port-enb 21/-
+port-loopback 21/- mac-near
+
+port-add 22/- 100G NONE
+port-enb 22/-
+an-set 22/- 2
+port-dis 22/-
+port-enb 22/-
+port-loopback 22/- mac-near
+
+port-add 23/- 100G NONE
+port-enb 23/-
+an-set 23/- 2
+port-dis 23/-
+port-enb 23/-
+port-loopback 23/- mac-near
+
+port-add 24/- 100G NONE
+port-enb 24/-
+an-set 24/- 2
+port-dis 24/-
+port-enb 24/-
+port-loopback 24/- mac-near
+
+port-add 31/- 100G NONE
+port-enb 31/-
+an-set 31/- 2
+port-dis 31/-
+port-enb 31/-
+port-loopback 31/- mac-near
+
+port-add 2/- 100G NONE
+port-enb 2/-
+an-set 2/- 2
+port-dis 2/-
+port-enb 2/-
+port-loopback 2/- mac-near
+
+port-add 32/- 100G NONE
+port-enb 32/-
+an-set 32/- 2
+port-dis 32/-
+port-enb 32/-
+port-loopback 32/- mac-near
+
+port-add 3/- 100G NONE
+port-enb 3/-
+an-set 3/- 2
+port-dis 3/-
+port-enb 3/-
+port-loopback 3/- mac-near
+
+port-add 4/- 100G NONE
+port-enb 4/-
+an-set 4/- 2
+port-dis 4/-
+port-enb 4/-
+port-loopback 4/- mac-near
+
+port-add 5/- 100G NONE
+port-enb 5/-
+an-set 5/- 2
+port-dis 5/-
+port-enb 5/-
+port-loopback 5/- mac-near
+
+port-add 6/- 100G NONE
+port-enb 6/-
+an-set 6/- 2
+port-dis 6/-
+port-enb 6/-
+port-loopback 6/- mac-near
+
+port-add 7/- 100G NONE
+port-enb 7/-
+an-set 7/- 2
+port-dis 7/-
+port-enb 7/-
+port-loopback 7/- mac-near
+
+port-add 8/- 100G NONE
+port-enb 8/-
+an-set 8/- 2
+port-dis 8/-
+port-enb 8/-
+port-loopback 8/- mac-near
+
+
+show
+exit
+exit
