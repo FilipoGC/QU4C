@@ -10,7 +10,7 @@ sys.path.append(os.path.expandvars("$SDE/install/lib/python3.6/site-packages/tof
 sys.path.append(os.path.expandvars("$SDE/install/lib/python3.6/site-packages/tofino/"))
 sys.path.append(os.path.expandvars("$SDE/install/lib/python3.6/site-packages/"))
 
-import bfrt_grpc.client as gc
+import bfrt_grpc.client as gc  # pyright: ignore[reportMissingImports]
 
 print(sys.version)
 

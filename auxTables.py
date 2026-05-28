@@ -3,7 +3,7 @@ from param import DATA_BLOCKS
 
 print("auxTables DATA_BLOCKS:", DATA_BLOCKS)
 
-p4 = bfrt.chacha.pipe  # noqa: F821 (annoying notification)
+p4 = bfrt.chacha.pipe # pyright: ignore[reportMissingImports]
 tbl = p4.MyIngressControl.mac_guard_xconnect
 
 #forward table, client <-> server(handshake pkts) and pktgen + recirc pkts

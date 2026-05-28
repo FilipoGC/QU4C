@@ -20,8 +20,8 @@ sys.path.append(os.path.expandvars("$SDE/install/lib/python3.6/site-packages/tof
 sys.path.append(os.path.expandvars("$SDE/install/lib/python3.6/site-packages/"))
 sys.path.append(os.path.expandvars("$SDE/install/lib/python3.6/site-packages/bf_ptf/"))
 
-import bfrt_grpc.client as gc
-from scapy.all import Ether, Raw
+import bfrt_grpc.client as gc  # pyright: ignore[reportMissingImports]
+from scapy.all import Ether, Raw  # pyright: ignore[reportMissingImports]
 
 APP_ID = 1
 PGEN_DEV_PORT = 68
