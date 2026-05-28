@@ -148,7 +148,7 @@ parser MyIngressParser(packet_in pkt,
 	state parse_udp {
 		pkt.extract(hdr.udp);
 		transition select(hdr.udp.hdr_length) {
-		    16w415: parse_quic_short;
+		    UDP_HDR_LEN_BYTES: parse_quic_short;
 		    default: accept;
 		}
 	}
@@ -283,16 +283,15 @@ control MyIngressControl(inout headers hdr,
         ig_tm_md.ucast_egress_port = 164;
 	}
 
-	action set_out_135() {
-		ig_tm_md.ucast_egress_port = 135;
-		ig_tm_md.bypass_egress = 1w1;//casos de handshake jaz faz bypass ig=50 e 135
+	action set_out_130() {
+    ig_tm_md.ucast_egress_port = 52;
+    ig_tm_md.bypass_egress = 1w1;
+    }
 
-	}
-
-	action set_out_50() {
-		ig_tm_md.ucast_egress_port = 50;
-		ig_tm_md.bypass_egress = 1w1;//casos de handshake jaz faz bypass ig=50 e 135
-	}
+    action set_out_52() {
+        ig_tm_md.ucast_egress_port = 130;
+        ig_tm_md.bypass_egress = 1w1;
+    }
 
 	action drop_pkt() {
 		ig_dprsr_md.drop_ctl = 1;
@@ -303,8 +302,8 @@ control MyIngressControl(inout headers hdr,
         ig_intr_md.ingress_port : exact;
     }
     actions = {
-        set_out_135;
-        set_out_50;
+        set_out_130;
+        set_out_52;
         set_out_164_from_pktgen;
         set_from_recirc;
         @defaultonly drop_pkt;
@@ -392,7 +391,7 @@ parser MyEgressParser(
 	state parse_udp {
 		pkt.extract(hdr.udp);
 		transition select(hdr.udp.hdr_length) {
-		    16w415: parse_quic_short;
+		    UDP_HDR_LEN_BYTES: parse_quic_short;
 		    default: accept;
 		}
 	}
@@ -425,6 +424,9 @@ control MyEgressControl(
 	Hash<bit<32>>(HashAlgorithm_t.IDENTITY) copy32_2;
 	Hash<bit<32>>(HashAlgorithm_t.IDENTITY) copy32_3;
 
+    //counter definition, get packets/bytes sent to D_P 52.
+    Counter<bit<64>, bit<9>>(512, CounterType_t.PACKETS_AND_BYTES) eg_port_counter;
+
 
     #include "eg_actions.p4"
     #include "eg_tables.p4"
@@ -453,6 +455,9 @@ control MyEgressControl(
 
     //
     apply {
+
+        //Counting all packets in egress filtered by port (in our case 52)
+        eg_port_counter.count(eg_intr_md.egress_port);
 
     	if (hdr.chacha_pre.isValid()){
 		    tb_e0.apply();

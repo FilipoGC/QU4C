@@ -142,20 +142,20 @@
 		hdr.ipv4.version        = 4w4;
 		hdr.ipv4.ihl            = 4w5;
 		hdr.ipv4.diffserv       = 8w0;
-		hdr.ipv4.total_len      = 16w435;   // 20 + 8 + 407
+		hdr.ipv4.total_len      = IPV4_TOTAL_LEN_BYTES;
 		hdr.ipv4.identification = 16w1;
 		hdr.ipv4.flags          = 3w2;      // DF, para ficar parecido com o trace
 		hdr.ipv4.frag_offset    = 13w0;
 		hdr.ipv4.ttl            = 8w64;
 		hdr.ipv4.protocol       = 8w17;
 		hdr.ipv4.hdr_checksum   = 16w0;
-		hdr.ipv4.src_addr       = 32w0x0D0D0D37;   // 13.13.13.55
-		hdr.ipv4.dst_addr       = 32w0x0D0D0D32;   // 13.13.13.50
+		hdr.ipv4.src_addr       = 32w0x0D0D0D31;  // 13.13.13.49
+		hdr.ipv4.dst_addr       = 32w0x0D0D0D32;  // 13.13.13.50
 
 		hdr.udp.setValid();
 		hdr.udp.src_port        = 16w52005;
 		hdr.udp.dst_port        = 16w4433;
-		hdr.udp.hdr_length      = 16w415;   // 8 + 407
+		hdr.udp.hdr_length      = UDP_HDR_LEN_BYTES;
 		hdr.udp.checksum        = 16w0;
 
 		hdr.quic_short.setValid();
@@ -165,6 +165,6 @@
 		hdr.quic_short.dcid = 64w0x5e1eb1799edb1083;
 		hdr.quic_short.packet_number = 8w3 + hdr.ethernet.src_addr[7:0];
 
-		hdr.ethernet.src_addr = 48w0x001b21a585c8;
-		hdr.ethernet.dst_addr = 48w0x90e2ba27fd3d;
+		hdr.ethernet.src_addr = 48w0xac1f6b670670;  // MAC ac:1f:6b:67:06:70
+		hdr.ethernet.dst_addr = 48w0xc470bd8bc80c;  // MAC c4:70:bd:8b:c8:0c
     }

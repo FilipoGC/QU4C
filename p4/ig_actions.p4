@@ -19,11 +19,11 @@
         bit<32> key0_const0, bit<32> key1_const1, bit<32> key2_const2, bit<32> key3_const3,
         bit<32> data_pos
     ) {
-
+        //mantain cipher original format
     	hdr.ethernet.ether_type = ETHERTYPE_CHACHA_RAW;
-    	hdr.ipv4.setInvalid();//invalidando
-    	hdr.udp.setInvalid();//invalidando
-    	hdr.quic_short.setInvalid();//invalidando
+    	hdr.ipv4.setInvalid();
+    	hdr.udp.setInvalid();
+    	hdr.quic_short.setInvalid();
         hdr.chacha.setValid();
         hdr.nonce.setValid();
 

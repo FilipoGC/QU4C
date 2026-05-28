@@ -1,38 +1,22 @@
-p4 = bfrt.chacha.pipe
+from param import DATA_BLOCKS
+
+
+print("auxTables DATA_BLOCKS:", DATA_BLOCKS)
+
+p4 = bfrt.chacha.pipe  # noqa: F821 (annoying notification)
 tbl = p4.MyIngressControl.mac_guard_xconnect
 
-
-# 50 -> 135
-tbl.entry_with_set_out_135(
-    ingress_port=130,
-    # dst_addr=0x90e2ba27fd3d
-).push()
-
-# 135 -> 50
-tbl.entry_with_set_out_50(
-    ingress_port=52,
-    # dst_addr=0x001b21a585c8
-).push()
-
-# 68 -> 164
-tbl.entry_with_set_out_164_from_pktgen(
-    ingress_port=68,
-    # dst_addr=0x90e2ba27fd3d
-).push()
-
-# 164
-tbl.entry_with_set_from_recirc(
-    ingress_port=164,
-    # dst_addr=0x90e2ba27fd3d
-).push()
+#forward table, client <-> server(handshake pkts) and pktgen + recirc pkts
+tbl.entry_with_set_out_130(ingress_port=130).push()
+tbl.entry_with_set_out_52(ingress_port=52).push()
+tbl.entry_with_set_out_164_from_pktgen(ingress_port=68).push()
+tbl.entry_with_set_from_recirc(ingress_port=164).push()
 
 spin = p4.MyEgressControl.tb_spin_quic
+spin.entry_with_set_spin_40(data_pos=DATA_BLOCKS, round=0, spin_carrier=0).push()
+spin.entry_with_set_spin_60(data_pos=DATA_BLOCKS, round=0, spin_carrier=1).push()
 
-spin.entry_with_set_spin_40(data_pos=6, round=0, spin_carrier=0).push()
-
-spin.entry_with_set_spin_60(data_pos=6, round=0, spin_carrier=1).push()
-
-bfrt.complete_operations()
+bfrt.complete_operations() # noqa: F821 (annoying notification)
 
 print("\n==== mac_guard_xconnect ====\n")
 tbl.dump(table=True)

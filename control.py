@@ -1,41 +1,27 @@
-import binascii
-import ipaddress
+#!/usr/bin/env python3
 import os
-import random
-import socket
 import sys
+from param import DATA_BLOCKS, DATA_SIZE
 
-from scapy.all import *
-
-sys.path.append(
-    os.path.expandvars("$SDE/install/lib/python3.10/site-packages/tofino/bfrt_grpc")
-)
+sys.path.append(os.path.expandvars("$SDE/install/lib/python3.10/site-packages/tofino/bfrt_grpc"))
 sys.path.append(os.path.expandvars("$SDE/install/lib/python3.10/site-packages/tofino/"))
 sys.path.append(os.path.expandvars("$SDE/install/lib/python3.10/site-packages/"))
+sys.path.append(os.path.expandvars("$SDE/install/lib/python3.6/site-packages/tofino/bfrt_grpc"))
+sys.path.append(os.path.expandvars("$SDE/install/lib/python3.6/site-packages/tofino/"))
+sys.path.append(os.path.expandvars("$SDE/install/lib/python3.6/site-packages/"))
 
 import bfrt_grpc.client as gc
 
 print(sys.version)
 
-grpc_addr = "localhost:50052"
-client_id = 0
-device_id = 0
-is_master = False
-notifications = None
-perform_bind = True
-
-interface = gc.ClientInterface(grpc_addr, client_id=1, device_id=0)
+interface = gc.ClientInterface("localhost:50052", client_id=1, device_id=0)
 bfrt_info = interface.bfrt_info_get()
 p4_name = bfrt_info.p4_name_get()
-if perform_bind:
-    interface.bind_pipeline_config(p4_name)
+interface.bind_pipeline_config(p4_name)
 bfrt_info = interface.bfrt_info_get()
 target = gc.Target(device_id=0, pipe_id=0xFFFF)
 
-
-# ---------- Setting -------------
-
-DATA_BLOCKS = 6  # Number of blocks encrypted
+print("DATA_BLOCKS:", DATA_BLOCKS, "data size:", DATA_SIZE, "bytes")
 
 recir_ports = [
     0,
@@ -56,11 +42,8 @@ recir_ports = [
     168,
     176,
     184,
-]  # Recirculation ports 0, 4, 8, 16, 24, 32, 40, 48, 56, 132, 136, 140, 144, 152, 160, 168, 176, 184
+]
 print("n_recir_port:", len(recir_ports))
-
-# --------------------------------
-
 
 n_cls = len(recir_ports)
 width = 32
@@ -80,7 +63,7 @@ for i in range(0, n_cls):
             continue
         mask = 1 << j
         key = (ub & ~(mask - 1)) ^ mask
-        if not (key, width - j) in key_set:
+        if (key, width - j) not in key_set:
             key_set.add((key, width - j))
             keys.append((key, width - j))
             data.append(i)
@@ -100,7 +83,7 @@ key_list = [
 data_list = [i7_table.make_data([], "MyIngressControl.i7_app")]
 
 for i in range(len(keys)):
-    key_list += [
+    key_list.append(
         i7_table.make_key(
             [
                 gc.KeyTuple("hdr.chacha_pre.data_pos", 0, 0),
@@ -111,12 +94,17 @@ for i in range(len(keys)):
                 ),
             ]
         )
-    ]
-
-    data_list += [
+    )
+    data_list.append(
         i7_table.make_data(
             [gc.DataTuple("eg_port", recir_ports[data[i]])], "MyIngressControl.i7"
         )
-    ]
+    )
+
+try:
+    i7_table.entry_del(target, [])
+except Exception as exc:
+    print("Warning: could not clear tb_i7 before programming:", exc)
 
 i7_table.entry_add(target, key_list, data_list)
+print("Installed tb_i7 entries:", len(key_list))
