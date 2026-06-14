@@ -1,4 +1,4 @@
-# ![](qu4c.png) QU4C: Towards Reproducing QUIC Traffic on a P4-Based Programmable Switch
+# ![](qu4c.png) Towards Reproducing QUIC Traffic on a P4-Based Programmable Switch
 
 
 QU4C is based on the original ChaCha-Tofino project  
