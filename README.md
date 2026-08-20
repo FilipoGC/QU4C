@@ -8,6 +8,10 @@ In this work, we extend the original implementation to parse and process emulate
 
 ⚠️ This project is still under development and currently contains preliminary results and ongoing implementation efforts.
 
+# Publication and references
+
+QU4C is an artifact associated published at ACM SIGCOMM 2026: [DEMO: QU4C: High-Throughput QUIC Traffic Reproduction on Programmable Switches](https://dl.acm.org/doi/abs/10.1145/3789240.3830281).
+
 # Requiriments
 - Barefoot/Intel SDE
 - BFRT Python libraries
